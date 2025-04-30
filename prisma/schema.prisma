@@ -1,6 +1,6 @@
 // schema.prisma
 datasource db {
-  provider = "mysql" 
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -10,21 +10,18 @@ generator client {
 
 model User {
   id        Int      @id @default(autoincrement())
-  username  String   @unique
   email     String   @unique
   password  String
   books     Book[]
-  createdAt DateTime @default(now())
 }
 
 model Book {
-  id        Int      @id @default(autoincrement())
-  title     String
-  author    String
-  status    String   // "read", "reading", "unread"
-  isFavorite Boolean
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  title         String
+  author        String
+  description   String?
+  isRead        Boolean  @default(false)
+  isFavorite    Boolean  @default(false)
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id])
 }
