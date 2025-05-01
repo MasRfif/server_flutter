@@ -13,6 +13,6 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/books", authenticateToken, bookRoutes);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`server is running on http://localhost:${port}`);
 });
